@@ -48,7 +48,7 @@ module GoogleVisualization
     def render_columns
       if required_methods_supplied?
         Mappings.columns.each { |c| @columns << gap_minder_add_column(procedure_hash[c]) }
-        procedure_hash.each { |key, value| @columns << gap_minder_add_column(value) if not Mappings.columns.include?(key) }
+        procedure_hash.each { |key, value| @columns[key] = gap_minder_add_column(value) if not Mappings.columns.include?(key) }
         @columns.join("\n")
       end
     end
