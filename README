@@ -1,8 +1,17 @@
-GoogleVisualization
+Google Visualization
 ===================
 
-This plugin currently covers the motion chart (gap minder) google visualization.  You can see an example of one here: http://googlesystem.blogspot.com/2008/03/google-spreadsheets-adds-gadgets.html
+This plugin is based on the gap_minder plugin found here:
 
+http://github.com/mwarnock/rails-google-visualization-plugin/tree/master
+
+
+Current visualizations supported include:
+ - Motion Chart (gapminder)
+ - Line Chart
+ - Annotated Time Line
+ - Table
+ - Geo Map
 
 Example
 =======
@@ -23,10 +32,10 @@ end
 
 #Layout
 #In order for this to work you'll need to add some javascript calls in your head tag.  Do this by adding the following line inside your layouts head tag:
-<%= gap_minder_setup %>
 
 #View (Here is the important stuff)
-<% gap_minder_for(@collection, :width => 500, :height => 300) do |gm| %>
+<%= setup_google_vis('motionchart') %>
+<% google_vis_for(@collection, 'motionchart', :width => 500, :height => 300, :other_options => 'foo') do |gm| %>
   <% gm.label("Department Group") {|collection_item| collection_item.group } %>
   <% gm.time("Created At") {|collection_item| collection_item.created_at } %>
   <% gm.x("X") {|collection_item| collection_item.x } %>
